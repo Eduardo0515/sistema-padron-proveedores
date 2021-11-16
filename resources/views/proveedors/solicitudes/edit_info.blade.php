@@ -3,10 +3,11 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header m-3">
-        <a href="{{ route('solicitud.index') }}" class="badge badge-dark mb-3"><i class="fas fa-arrow-left"></i>
+        <a href="{{ route('solicitud.show', $solicitud->id) }}" class="badge badge-dark mb-3"><i
+                class="fas fa-arrow-left"></i>
             Regresar</a>
         <h3>
-            Editar solicitud
+            Editar datos de solicitud
         </h3>
     </section>
 

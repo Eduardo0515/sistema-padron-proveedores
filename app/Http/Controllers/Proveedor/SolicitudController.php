@@ -46,6 +46,11 @@ class SolicitudController extends Controller
         }
     }
 
+    public function editDocs(Solicitud $solicitud)
+    {
+        return view('proveedors.solicitudes.edit_docs', compact('solicitud'));
+    }
+
     public function validateSolicitud(Request $request)
     {
         $messages = [
@@ -145,8 +150,9 @@ class SolicitudController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         } else {
-            //$request['estatus'] = 'Para corrección';
             $nuevaSolicitud = $request->all();
+            // Con [unset] se eliminan las variables que no son modificables, esto en caso de que se agreguen 
+            // otros datos desde la vista o si logran modificar el [$request]
             unset(
                 $nuevaSolicitud['rfc'],
                 $nuevaSolicitud['user_proveedor_id'],
@@ -155,11 +161,46 @@ class SolicitudController extends Controller
                 $nuevaSolicitud['razon_social'],
             );
             $solicitud->update($nuevaSolicitud);
-            /*
-            $request->merge($datosUsuario);
-            $solicitud = Solicitud::create($request->all());
-            return redirect()->route('solicitud.createDocs', $solicitud->id);*/
-            return $solicitud;
+
+            return redirect()->route('solicitud.show', $solicitud->id);
+        }
+    }
+
+    public function updateDocs(Request $request, Solicitud $solicitud)
+    {
+        $solicitudRequisitos = $solicitud->solicitudRequisitos;
+        $messages = ['mimes' => 'El documento :attribute debe ser de tipo PDF.'];
+        $rules = [];
+        $attributes = [];
+        // Se recorren los requisitos subidos previamente para agregar reglas, 
+        // estos requisitos serán los que se podrán editar
+        foreach ($solicitudRequisitos as $solicitudRequisito) {
+            // Solo si se ha subido un documento en el [$request] será validado para que sea de tipo PDF
+            if ($request->hasFile('doc' . $solicitudRequisito->requisito_id)) {
+                $docId = 'doc' . $solicitudRequisito->requisito_id;
+                $rules = Arr::add($rules, $docId, 'mimes:pdf');
+                $attributes = Arr::add($attributes, $docId, $solicitudRequisito->nombre);
+            }
+        }
+
+        if (count($rules) > 0) {
+            $request->validate($rules, $messages, $attributes);
+
+            foreach ($solicitudRequisitos as $solicitudRequisito) {
+                if ($request->hasFile('doc' . $solicitudRequisito->requisito_id)) {
+                    // Se almaena el documento que viene del [$request], el nombre será el mismo que el subido anteriormente
+                    // esto hará que el documento anterior sea reemplazado por el nuevo. 
+                    $request['doc' . $solicitudRequisito->requisito_id]->storeAs(
+                        'solicitud-documentos',
+                        $solicitudRequisito->solicitud_id . '-' . $solicitudRequisito->requisito_id,
+                        'public'
+                    );
+                    //$request['doc' . $solicitudRequisito->requisito_id]->move();
+                }
+            }
+            return redirect()->route('solicitud.show', $solicitud->id);
+        } else {
+            return back()->with('no-update', 'No ha realizado ninguna modificación.');
         }
     }
 
@@ -176,6 +217,14 @@ class SolicitudController extends Controller
         $storage = Storage::path('public\\' . $solicitudRequisito->ruta);
 
         return response()->file($storage);
+    }
+
+    public function cambiarEstatus(Solicitud $solicitud)
+    {
+        $solicitud->estatus = 'En revisión';
+        $solicitud->save();
+
+        return redirect()->route('solicitud.show', $solicitud->id);
     }
 
     public function pago($solicitud_id)

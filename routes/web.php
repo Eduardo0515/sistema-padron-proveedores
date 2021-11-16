@@ -51,6 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/documento/{id}', 'Proveedor\SolicitudController@openDocument')->name('admin.opendoc');
     // Comentarios
     Route::post('admin/comentarios', 'Admin\ComentarioController@read')->name('comentario.read');
+    // Datos del padrón
+    Route::get('admin/padron', 'Admin\AdminPadronController@index')->name('admin.padron');
+    Route::get('admin/padron/{padron}', 'Admin\AdminPadronController@show')->name('admin.verpadron');
+
 });
 
 Auth::routes();
@@ -72,6 +76,9 @@ Route::middleware(['auth:proveedor'])->group(function () {
     // Editar solicitud
     Route::get('proveedor/solicitud/edit/{solicitud}', 'Proveedor\SolicitudController@edit')->name('solicitud.edit');
     Route::put('proveedor/solicitud/update/{solicitud}', 'Proveedor\SolicitudController@update')->name('solicitud.update');
+    Route::get('proveedor/solicitud/edit-docs/{solicitud}', 'Proveedor\SolicitudController@editDocs')->name('solicitud.editDocs');
+    Route::post('proveedor/solicitud/update-docs/{solicitud}', 'Proveedor\SolicitudController@updateDocs')->name('solicitud.updateDocs');
+
     // Realizar pago
     Route::get('proveedor/solicitud/pago/{id}', 'Proveedor\SolicitudController@pago')->name('solicitud.pago');
     Route::view('proveedor/solicitud/mensaje', 'proveedors.solicitudes.message')->name('solicitud.mensaje');
@@ -81,6 +88,8 @@ Route::middleware(['auth:proveedor'])->group(function () {
     Route::get('proveedor/documento/{id}', 'Proveedor\SolicitudController@openDocument')->name('doc.open');
     // Ver Comentarios
     Route::post('proveedor/comentarios', 'Admin\ComentarioController@read')->name('proveedor.comentario.read');
+    // Cambiar estatus a revisión después de editar solicitud
+    Route::get('proveedor/solicitud/cambiar-estatus/{solicitud}', 'Proveedor\SolicitudController@cambiarEstatus')->name('solicitud.cambiarEstatus');
 });
 
 // Proveedor authentication

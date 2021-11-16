@@ -36,12 +36,24 @@
                 @endif
                 @if ($solicitud->estatus == 'Para corrección')
                     <div class="card">
-                        <div class="card-header bg-warning">La solicitud debe ser corregida</div>
+                        <div class="card-header bg-light">La solicitud debe ser corregida</div>
                         <div class="card-body">
                             <p class="card-text">Su solicitud ha sido rechazada, realice la corrección para continuar
                                 con su solicitud.</p>
-                            <a href="{{ route('solicitud.edit', $solicitud->id) }}"
-                                class="card-link text-dark"><strong>Corregir solicitud</strong></a>
+                            <p class="card-text mt-3">Presione "Enviar solicitud" cuando termine de editar la solicitud para
+                                ser enviada y revisada nuevamente.</p>
+                            <div class="row">
+                                <a href="{{ route('solicitud.edit', $solicitud->id) }}"
+                                    class="card-link mx-4"><strong>Editar
+                                        datos</strong></a>
+                                <a href="{{ route('solicitud.editDocs', $solicitud->id) }}"
+                                    class="card-link mx-4"><strong>Editar
+                                        documentos</strong></a>
+
+                                <a href="{{ route('solicitud.cambiarEstatus', $solicitud->id) }}"
+                                    class="card-link text-dark mx-4"><strong>Enviar
+                                        solicitud</strong></a>
+                            </div>
                         </div>
                     </div>
                 @endif
@@ -50,13 +62,13 @@
                 <div class="dropdown-divider"></div>
 
                 <!--<div class="form-group">
-                                                        <label for="fecha" class="col-form-label text-md-right">{{ __('Fecha de solicitud') }}</label>
-                                                        <div class="">
-                                                            <label type="text" class="form-control"
-                                                                name="fecha">{{ $solicitud->created_at->format('d-m-Y') }}</label>
-                                                        </div>
-                                                    </div>
-                                                    -->
+                                                                                <label for="fecha" class="col-form-label text-md-right">{{ __('Fecha de solicitud') }}</label>
+                                                                                <div class="">
+                                                                                    <label type="text" class="form-control"
+                                                                                        name="fecha">{{ $solicitud->created_at->format('d-m-Y') }}</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            -->
 
                 <div class="form-group">
                     <label for="tipo_persona" class="col-form-label text-md-right">{{ __('Tipo de persona') }}</label>
@@ -245,7 +257,7 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <p class="card-text">{{ $solicitudRequisito->nombre }}</p>
-                                            <a href="{{ route('admin.opendoc', $solicitudRequisito->id) }}"
+                                            <a href="{{ route('doc.open', $solicitudRequisito->id) }}"
                                                 class="card-link">Ver
                                                 documento</a>
                                         </div>
