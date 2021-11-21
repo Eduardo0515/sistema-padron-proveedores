@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/fonts_google.css?family=Source+Sans+Pro:300,400,400i,700&display=fallback') }}">
     <link href="{{ asset('css/innovacion.tuxtla.css') }}" rel="stylesheet" type="text/css">
-
+    <link href="{{ asset('css/credencial_style.css') }}" rel="stylesheet" type="text/css">
     @yield('content_css')
     <link rel="shortcut icon" href="{{ asset('favicons/favicon.png') }}">
 

@@ -28,6 +28,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $padrons->links() }}
                 @else
                     <div class="card">
                         <div class="card-header">

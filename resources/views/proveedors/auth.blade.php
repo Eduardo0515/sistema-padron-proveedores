@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('css/fonts_google.css?family=Source+Sans+Pro:300,400,400i,700&display=fallback') }}">
     <link href="{{ asset('css/innovacion.tuxtla.css') }}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="{{{ asset('favicons/favicon.png') }}}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     
@@ -21,7 +22,7 @@
     </div>
 
     <script src="{{ asset('js/innovacion.tuxtla.js') }}"></script>
-
+    @yield('script')
 </body>
 
 </html>

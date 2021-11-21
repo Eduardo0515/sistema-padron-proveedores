@@ -89,99 +89,99 @@
                 <h5 class="form-group mt-4">Dirección</h5>
                 <div class="dropdown-divider"></div>
                 <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="domicilio" class="col-form-label text-md-right">{{ __('Domicilio') }}</label>
+                    <div class="form-row col-md-7">
+                        <div class="form-group col-md-6">
+                            <label for="domicilio" class="col-form-label text-md-right">{{ __('Domicilio') }}</label>
 
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->domicilio }}</label>
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->domicilio }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="num_exterior"
+                                class="col-form-label text-md-right">{{ __('Número exterior') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->num_exterior }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="num_interior"
+                                class="col-form-label text-md-right">{{ __('Número interior') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->num_interior }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="colonia" class="col-form-label text-md-right">{{ __('Colonia') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->colonia }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="codigo_postal"
+                                class="col-form-label text-md-right">{{ __('Código postal') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->codigo_postal }}</label>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="localidad" class="col-form-label text-md-right">{{ __('Localidad') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->localidad }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="ciudad" class="col-form-label text-md-right">{{ __('Ciudad') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->ciudad }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="entidad" class="col-form-label text-md-right">{{ __('Entidad') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->entidad }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="pais" class="col-form-label text-md-right">{{ __('País') }}</label>
+
+                            <div class="">
+                                <label class="form-control">{{ $solicitud->pais }}</label>
+                            </div>
                         </div>
                     </div>
+                    <div class="form-group col-md-5">
+                        <label for="map" class="offset-1 text-primary col-form-label text-md-right">Ubicación</label>
 
-                    <div class="form-group col-md-2">
-                        <label for="num_exterior"
-                            class="col-form-label text-md-right">{{ __('Número exterior') }}</label>
+                        <div class="form-group col-md-12">
+                            <div id="map" style="height: 300px; width:100%"></div>
+                        </div>
+
+                        <input id="latitud" type="text" class="form-control d-none" name="latitud"
+                            value="{{ old('latitud') }}" required>
 
                         <div class="">
-                            <label class="form-control">{{ $solicitud->num_exterior }}</label>
+                            <input id="longitud" type="text" class="form-control d-none" name="longitud"
+                                value="{{ old('longitud') }}" required>
                         </div>
+
                     </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="num_interior"
-                            class="col-form-label text-md-right">{{ __('Número interior') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->num_interior }}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="colonia" class="col-form-label text-md-right">{{ __('Colonia') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->colonia }}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label for="codigo_postal" class="col-form-label text-md-right">{{ __('Código postal') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->codigo_postal }}</label>
-
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="localidad" class="col-form-label text-md-right">{{ __('Localidad') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->localidad }}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="ciudad" class="col-form-label text-md-right">{{ __('Ciudad') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->ciudad }}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="entidad" class="col-form-label text-md-right">{{ __('Entidad') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->entidad }}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="pais" class="col-form-label text-md-right">{{ __('País') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->pais }}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="latitud" class="col-form-label text-md-right">{{ __('Latitud') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->latitud }}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="longitud" class="col-form-label text-md-right">{{ __('Longitud') }}</label>
-
-                        <div class="">
-                            <label class="form-control">{{ $solicitud->longitud }}</label>
-                        </div>
-                    </div>
-
                 </div>
 
                 <h4>Documentos subidos</h4>
@@ -357,5 +357,9 @@
         $("#radio-definitivo").change(function() {
             $('#mensaje-rechazar').css("display", "block");
         });
+    </script>
+    <script type="text/javascript" src="{{ asset('/js/map.js') }}"></script>
+    <script type="text/javascript">
+        createMap({{ $solicitud->latitud }}, {{ $solicitud->longitud }}, false);
     </script>
 @endsection

@@ -54,6 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
     // Datos del padrón
     Route::get('admin/padron', 'Admin\AdminPadronController@index')->name('admin.padron');
     Route::get('admin/padron/{padron}', 'Admin\AdminPadronController@show')->name('admin.verpadron');
+    // Generar credencial
+    Route::view('admin/credencial/{id}', 'admin.credencial.credencial')->name('admin.credencial');
+    Route::get('admin/credencial/vista-previa/{padron}', 'Admin\AdminPadronController@vistaPrevia')->name('admin.credencial_previa');
+    Route::get('admin/credencial/generar/{padron}', 'Admin\AdminPadronController@generarCredencial')->name('admin.generar-credencial');
 
 });
 

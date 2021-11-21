@@ -31,6 +31,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $solicitudes->links() }}
                 @else
                     <h5>No hay solicitudes actualmente.</h5>
                     

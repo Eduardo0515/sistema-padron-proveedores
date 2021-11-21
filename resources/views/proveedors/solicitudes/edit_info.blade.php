@@ -174,170 +174,179 @@
                         <h5 class="form-group mt-4">Dirección</h5>
                         <div class="dropdown-divider"></div>
                         <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="domicilio" class="col-form-label text-md-right">{{ __('Domicilio') }}</label>
+                            <div class="form-row col-md-7">
+                                <div class="form-group col-md-6">
+                                    <label for="domicilio"
+                                        class="col-form-label text-md-right">{{ __('Domicilio') }}</label>
 
-                                <div class="">
-                                    <input id="domicilio" type="text"
-                                        class="form-control @error('domicilio') is-invalid @enderror" name="domicilio"
-                                        value="{{ old('domicilio', $solicitud->domicilio) }}" required
-                                        autocomplete="domicilio" autofocus>
+                                    <div class="">
+                                        <input id="domicilio" type="text"
+                                            class="form-control @error('domicilio') is-invalid @enderror" name="domicilio"
+                                            value="{{ old('domicilio', $solicitud->domicilio) }}" required
+                                            autocomplete="domicilio" autofocus>
 
-                                    @error('domicilio')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                        @error('domicilio')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="num_exterior"
+                                        class="col-form-label text-md-right">{{ __('Número exterior') }}</label>
+
+                                    <div class="">
+                                        <input id="num_exterior" type="text"
+                                            class="form-control @error('num_exterior') is-invalid @enderror"
+                                            name="num_exterior"
+                                            value="{{ old('num_exterior', $solicitud->num_exterior) }}" required
+                                            autocomplete="num_exterior" autofocus>
+
+                                        @error('num_exterior')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="num_interior"
+                                        class="col-form-label text-md-right">{{ __('Número interior') }}</label>
+
+                                    <div class="">
+                                        <input id="num_interior" type="text"
+                                            class="form-control @error('num_interior') is-invalid @enderror"
+                                            name="num_interior"
+                                            value="{{ old('num_interior', $solicitud->num_interior) }}"
+                                            autocomplete="num_interior" autofocus>
+
+                                        @error('num_interior')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="colonia" class="col-form-label text-md-right">{{ __('Colonia') }}</label>
+
+                                    <div class="">
+                                        <input id="colonia" type="text"
+                                            class="form-control @error('colonia') is-invalid @enderror" name="colonia"
+                                            value="{{ old('colonia', $solicitud->colonia) }}" required
+                                            autocomplete="colonia" autofocus>
+
+                                        @error('colonia')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="codigo_postal"
+                                        class="col-form-label text-md-right">{{ __('Código postal') }}</label>
+
+                                    <div class="">
+                                        <input id="codigo_postal" type="text"
+                                            class="form-control @error('codigo_postal') is-invalid @enderror"
+                                            name="codigo_postal"
+                                            value="{{ old('codigo_postal', $solicitud->codigo_postal) }}" required
+                                            autocomplete="codigo_postal" autofocus>
+
+                                        @error('codigo_postal')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="localidad"
+                                        class="col-form-label text-md-right">{{ __('Localidad') }}</label>
+
+                                    <div class="">
+                                        <input id="localidad" type="text"
+                                            class="form-control @error('localidad') is-invalid @enderror" name="localidad"
+                                            value="{{ old('localidad', $solicitud->localidad) }}" required
+                                            autocomplete="localidad" autofocus>
+
+                                        @error('localidad')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="ciudad" class="col-form-label text-md-right">{{ __('Ciudad') }}</label>
+
+                                    <div class="">
+                                        <input id="ciudad" type="text"
+                                            class="form-control @error('ciudad') is-invalid @enderror" name="ciudad"
+                                            value="{{ old('ciudad', $solicitud->ciudad) }}" required
+                                            autocomplete="ciudad" autofocus>
+
+                                        @error('ciudad')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="entidad" class="col-form-label text-md-right">{{ __('Entidad') }}</label>
+
+                                    <div class="">
+                                        <input id="entidad" type="text"
+                                            class="form-control @error('entidad') is-invalid @enderror" name="entidad"
+                                            value="{{ old('entidad', $solicitud->entidad) }}" required
+                                            autocomplete="entidad" autofocus>
+
+                                        @error('entidad')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="pais" class="col-form-label text-md-right">{{ __('País') }}</label>
+
+                                    <div class="">
+                                        <input id="pais" type="text"
+                                            class="form-control @error('pais') is-invalid @enderror" name="pais"
+                                            value="{{ old('pais', $solicitud->pais) }}" required autocomplete="pais"
+                                            autofocus>
+
+                                        @error('pais')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
+                            <div class="form-group col-md-5">
+                                <label for="map" class="offset-1 text-primary col-form-label text-md-right">Arrastre el
+                                    marcador para señalar su ubicación</label>
 
-                            <div class="form-group col-md-2">
-                                <label for="num_exterior"
-                                    class="col-form-label text-md-right">{{ __('Número exterior') }}</label>
-
-                                <div class="">
-                                    <input id="num_exterior" type="text"
-                                        class="form-control @error('num_exterior') is-invalid @enderror" name="num_exterior"
-                                        value="{{ old('num_exterior', $solicitud->num_exterior) }}" required
-                                        autocomplete="num_exterior" autofocus>
-
-                                    @error('num_exterior')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="form-group col-md-12">
+                                    <div id="map" style="height: 300px; width:100%"></div>
                                 </div>
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="num_interior"
-                                    class="col-form-label text-md-right">{{ __('Número interior') }}</label>
-
-                                <div class="">
-                                    <input id="num_interior" type="text"
-                                        class="form-control @error('num_interior') is-invalid @enderror" name="num_interior"
-                                        value="{{ old('num_interior', $solicitud->num_interior) }}"
-                                        autocomplete="num_interior" autofocus>
-
-                                    @error('num_interior')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="colonia" class="col-form-label text-md-right">{{ __('Colonia') }}</label>
-
-                                <div class="">
-                                    <input id="colonia" type="text"
-                                        class="form-control @error('colonia') is-invalid @enderror" name="colonia"
-                                        value="{{ old('colonia', $solicitud->colonia) }}" required autocomplete="colonia"
-                                        autofocus>
-
-                                    @error('colonia')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="codigo_postal"
-                                    class="col-form-label text-md-right">{{ __('Código postal') }}</label>
-
-                                <div class="">
-                                    <input id="codigo_postal" type="text"
-                                        class="form-control @error('codigo_postal') is-invalid @enderror"
-                                        name="codigo_postal"
-                                        value="{{ old('codigo_postal', $solicitud->codigo_postal) }}" required
-                                        autocomplete="codigo_postal" autofocus>
-
-                                    @error('codigo_postal')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="localidad" class="col-form-label text-md-right">{{ __('Localidad') }}</label>
-
-                                <div class="">
-                                    <input id="localidad" type="text"
-                                        class="form-control @error('localidad') is-invalid @enderror" name="localidad"
-                                        value="{{ old('localidad', $solicitud->localidad) }}" required
-                                        autocomplete="localidad" autofocus>
-
-                                    @error('localidad')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="ciudad" class="col-form-label text-md-right">{{ __('Ciudad') }}</label>
-
-                                <div class="">
-                                    <input id="ciudad" type="text"
-                                        class="form-control @error('ciudad') is-invalid @enderror" name="ciudad"
-                                        value="{{ old('ciudad', $solicitud->ciudad) }}" required autocomplete="ciudad"
-                                        autofocus>
-
-                                    @error('ciudad')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="entidad" class="col-form-label text-md-right">{{ __('Entidad') }}</label>
-
-                                <div class="">
-                                    <input id="entidad" type="text"
-                                        class="form-control @error('entidad') is-invalid @enderror" name="entidad"
-                                        value="{{ old('entidad', $solicitud->entidad) }}" required autocomplete="entidad"
-                                        autofocus>
-
-                                    @error('entidad')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="pais" class="col-form-label text-md-right">{{ __('País') }}</label>
-
-                                <div class="">
-                                    <input id="pais" type="text" class="form-control @error('pais') is-invalid @enderror"
-                                        name="pais" value="{{ old('pais', $solicitud->pais) }}" required
-                                        autocomplete="pais" autofocus>
-
-                                    @error('pais')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="latitud" class="col-form-label text-md-right">{{ __('Latitud') }}</label>
 
                                 <div class="">
                                     <input id="latitud" type="text"
-                                        class="form-control @error('latitud') is-invalid @enderror" name="latitud"
+                                        class="d-none form-control @error('latitud') is-invalid @enderror" name="latitud"
                                         value="{{ old('latitud', $solicitud->latitud) }}" required autocomplete="latitud"
                                         autofocus>
 
@@ -347,14 +356,10 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="longitud" class="col-form-label text-md-right">{{ __('Longitud') }}</label>
 
                                 <div class="">
                                     <input id="longitud" type="text"
-                                        class="form-control @error('longitud') is-invalid @enderror" name="longitud"
+                                        class="d-none form-control @error('longitud') is-invalid @enderror" name="longitud"
                                         value="{{ old('longitud', $solicitud->longitud) }}" required
                                         autocomplete="longitud" autofocus>
 
@@ -365,7 +370,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="form-group row mb-2">
@@ -385,4 +389,11 @@
 
     </section>
     <!-- /.content -->
+@endsection
+
+@section('script')
+    <script type="text/javascript" src="{{ asset('/js/map.js') }}"></script>
+    <script type="text/javascript">
+        createMap({{ $solicitud->latitud }}, {{ $solicitud->longitud }}, true);
+    </script>
 @endsection

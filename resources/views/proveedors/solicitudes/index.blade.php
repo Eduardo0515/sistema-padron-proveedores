@@ -32,6 +32,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $solicitudes->links() }}
                 @else
                     <div class="card">
                         <div class="card-header">

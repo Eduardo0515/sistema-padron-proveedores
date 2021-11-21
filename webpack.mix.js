@@ -14,10 +14,10 @@ const mix = require('laravel-mix');
 /*mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');*/
 mix.styles([
-    'resources/assets/plugins/fontawesome-free/css/all.min.css',
-    'resources/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css',
-    'resources/assets/dist/css/adminlte.min.css',
-], 'public/css/innovacion.tuxtla.css')
+        'resources/assets/plugins/fontawesome-free/css/all.min.css',
+        'resources/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css',
+        'resources/assets/dist/css/adminlte.min.css',
+    ], 'public/css/innovacion.tuxtla.css')
     .copy([
         'resources/assets/dist/css/adminlte.min.css.map',
     ], 'public/css')
@@ -49,7 +49,7 @@ mix.styles([
         'resources/js/bootbox/bootbox.min.js'
     ], 'public/js/bootbox/bootbox.min.js')
 
-    .scripts([
+.scripts([
         'resources/assets/plugins/daterangepicker/daterangepicker.js'
     ], 'public/js/daterangepicker/daterangepicker.js')
     .styles([
@@ -68,11 +68,11 @@ mix.styles([
         'resources/js/login.js',
     ], 'public/js/login.js')
 
-    .scripts([
-        'resources/js/usuarios-list.js',
-    ], 'public/js/usuarios-list.js')
-    
-    .scripts([
+.scripts([
+    'resources/js/usuarios-list.js',
+], 'public/js/usuarios-list.js')
+
+.scripts([
         'resources/js/usuarios-add.js',
     ], 'public/js/usuarios-add.js')
     .scripts([
@@ -83,7 +83,7 @@ mix.styles([
     ], 'public/js/usuarios-privileges.js')
     .styles([
         'resources/assets/fonts_google/fonts_google.css'
-        ],'public/css/fonts_google.css')
+    ], 'public/css/fonts_google.css')
     .copy([
         'resources/assets/fonts_google/6xK1dSBYKcSV-LCoeQqfX1RYOo3qPZ7jsDJT9g.woff2',
         'resources/assets/fonts_google/6xK1dSBYKcSV-LCoeQqfX1RYOo3qPZ7ksDJT9g.woff2',
@@ -113,7 +113,7 @@ mix.styles([
         'resources/assets/fonts_google/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwmhduz8A.woff2',
         'resources/assets/fonts_google/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwmRduz8A.woff2',
         'resources/assets/fonts_google/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwmxduz8A.woff2'
-        ],'public/fonts_google')
+    ], 'public/fonts_google')
     .copyDirectory('resources/assets/plugins/fontawesome-free/webfonts', 'public/webfonts')
     .scripts([
         'resources/js/handlebars.min.js'
@@ -135,5 +135,5 @@ mix.styles([
     ], 'public/css/ol/ol.css')
     .scripts([
         'resources/assets/plugins/ol/ol.js'
-    ], 'public/js/ol/ol.js');
-
+    ], 'public/js/ol/ol.js')
+    .js('resources/js/map.js', 'public/js');

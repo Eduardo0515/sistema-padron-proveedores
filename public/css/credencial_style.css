@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    padding: 15px;
+}
+
+.container .form_datos {
+    display: flex;
+}
+
+.container .form_datos .container__form {
+    width: 80%;
+}
+
+.container .form_datos .container__side {
+    margin: auto;
+}
+
+.container .form_datos .container__form .form__group {
+    display: flex;
+    padding: 0 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.container .form_datos .container__form .form__group label {
+    padding-left: 10px;
+    width: 200px;
+}
+
+.container .form_datos .container__form .form__group input {
+    width: 100%;
+    height: 30px;
+    padding: 4px;
+    background-color: #BFBFBF;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.container .form_datos .container__form .form__group .label_persona {
+    padding-left: 40px;
+    width: 100px;
+}
+
+.container .form_datos .container__form .form__group .input_persona {
+    width: 20%;
+    height: 25px;
+}
+
+.container .form_datos .container__form .form__group .input_rfc {
+    width: 65%;
+    height: 25px;
+}
+
+.container .form_representante {
+    padding: 0 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container .form_representante input {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #BFBFBF;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.container .form_footer {
+    width: 96%;
+    height: 35px;
+    margin: 40px 20px;
+    font-weight: bold;
+    background-color: #BFBFBF;
+    border: 1px solid #BFBFBF;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.container .fundamento .fundamento__description {
+    display: flex;
+    margin: 30px 20px;
+}
+
+.container .fundamento .fundamento__description .img_left {
+    margin: auto;
+    height: 150px;
+    width: 150px;
+    border: 1px solid rgb(189, 189, 189);
+}
+
+.container .fundamento .fundamento__description .img_right {
+    margin: auto;
+    height: 100px;
+    width: 150px;
+    border-radius: 80px;
+}
+
+.container .fundamento .fundamento__description img {
+    width: 50%;
+}
+
+.container .fundamento .fundamento__description p {
+    width: 40%;
+    padding: 0 10px;
+    text-align: justify;
+}
+
+.container .fundamento .fundamento__razon {
+    text-align: center;
+}
+
+.container .fundamento .fundamento__razon label {
+    font-weight: bold;
+}
+
+.container .fundamento .fundamento__razon input {
+    width: 96%;
+    height: 40px;
+    margin: 20px;
+    text-align: center;
+    background-color: #BFBFBF;
+    border: none;
+    font-size: 16px;
+}
+
+.container .fundamento .fundamento__footer {
+    display: flex;
+    margin: 0 20px;
+}
+
+.container .fundamento .fundamento__footer .datos {
+    width: 40%;
+    text-align: center;
+}
+
+.container .fundamento .fundamento__footer .datos label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container .fundamento .fundamento__footer .datos input {
+    display: block;
+    margin: 10px auto;
+    height: 35px;
+    background-color: #BFBFBF;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.container .fundamento .fundamento__footer .firma {
+    width: 60%;
+    text-align: center;
+}
+
+.container .fundamento .fundamento__footer .campo_firma {
+    height: 75px;
+}
+
+.container .fundamento .fundamento__footer .firma label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container .footer {
+    width: 96%;
+    height: 35px;
+    margin: 0 20px;
+    background-color: #BFBFBF;
+}
