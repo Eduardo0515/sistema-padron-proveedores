@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 mt-3 mx-5">
+            <div class="col-md-12 mt-3 mx-5 px-4">
                 <a href="{{ route('admin.solicitudes') }}" class="badge badge-dark mb-3"><i class="fas fa-arrow-left"></i>
                     Regresar</a>
 

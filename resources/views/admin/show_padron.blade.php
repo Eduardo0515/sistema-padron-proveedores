@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 mt-3 mx-5">
+            <div class="col-md-12 mt-3 mx-5 px-4">
                 <a href="{{ route('admin.padron') }}" class="badge badge-dark mb-3"><i class="fas fa-arrow-left"></i>
                     Regresar</a>
 
@@ -210,10 +210,10 @@
 
                 <div class="form-group row my-5 offset-2">
                     <div class="col-md-5">
-                        <a href="{{ route('admin.generar-credencial', $padron->id) }}"
-                            class="btn btn-success btn-block">
+                        <button type="button" class="btn btn-success btn-block" data-toggle="modal"
+                            data-target="#generar-credencial">
                             Generar Credencial
-                        </a>
+                        </button>
                     </div>
                     <div class="col-md-5">
                         <a href="{{ route('admin.credencial_previa', $padron->id) }}" target="_blank"
@@ -223,12 +223,74 @@
                     </div>
                 </div>
 
+                <!-- Modal Datos complementarios para generar credecnial -->
+                <div class="modal fade" id="generar-credencial" tabindex="-1" role="dialog"
+                    aria-labelledby="generar-credencialLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="generar-credencialLabel">Datos complementarios</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('admin.generar-credencial', $padron->id) }}" method="POST">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="giros">Giros</label>
+                                        <input type="text" class="form-control @error('giros') is-invalid @enderror"
+                                            id="giros" name="giros" placeholder="Ingrese los giros de la empresa o persona (342-234-234)">
+                                        @error('giros')
+                                            <span class="invalid-feedback" role="alert">
+                                                <small>{{ $message }}</small>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="num_proveedor">Número de proveedor</label>
+                                        <input type="text"
+                                            class="form-control @error('num_proveedor') is-invalid @enderror"
+                                            id="num_proveedor" name="num_proveedor"
+                                            placeholder="Escriba el número de proveedor">
+                                        @error('num_proveedor')
+                                            <span class="invalid-feedback" role="alert">
+                                                <small>{{ $message }}</small>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vigencia">Vigencia</label>
+                                        <input type="text" class="form-control @error('vigencia') is-invalid @enderror"
+                                            id="vigencia" name="vigencia" placeholder="Vigencia (31-12-2021)">
+                                        @error('vigencia')
+                                            <span class="invalid-feedback" role="alert">
+                                                <small>{{ $message }}</small>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-success">Generar Credencial</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Rechazar solicitud-->
             </div>
         </div>
     </div>
 @endsection
 
 @section('content_js')
+    @if (count($errors) > 0)
+        <script type="text/javascript">
+            $('#generar-credencial').modal('show');
+        </script>
+    @endif
     <script type="text/javascript" src="{{ asset('/js/map.js') }}"></script>
     <script type="text/javascript">
         createMap({{ $padron->latitud }}, {{ $padron->longitud }}, false);

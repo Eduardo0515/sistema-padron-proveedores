@@ -4,37 +4,43 @@
     font-family: sans-serif;
 }
 
-.container {
-    padding: 15px;
-}
-
-.container .form_datos {
-    display: flex;
-}
-
-.container .form_datos .container__form {
+.form_datos .container__form {
+    float: left;
     width: 80%;
+    margin-bottom: 30px;
 }
 
-.container .form_datos .container__side {
-    margin: auto;
+.form_representante .container__side {
+    float: right;
+    width: 20%;
 }
 
 .container .form_datos .container__form .form__group {
-    display: flex;
     padding: 0 10px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     font-weight: bold;
 }
 
 .container .form_datos .container__form .form__group label {
+    display: inline-block;
     padding-left: 10px;
-    width: 200px;
+    width: 20%;
+    font-size: 18px;
 }
 
 .container .form_datos .container__form .form__group input {
-    width: 100%;
-    height: 30px;
+    width: 75%;
+    height: 40px;
+    padding: 4px;
+    background-color: #BFBFBF;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.container .form_datos .container__form .form__group .input_rfc {
+    width: 35%;
+    height: 40px;
     padding: 4px;
     background-color: #BFBFBF;
     border: none;
@@ -43,18 +49,19 @@
 }
 
 .container .form_datos .container__form .form__group .label_persona {
-    padding-left: 40px;
-    width: 100px;
+    display: inline-block;
+    width: 15%;
+    padding-left: 18px;
 }
 
 .container .form_datos .container__form .form__group .input_persona {
     width: 20%;
-    height: 25px;
-}
-
-.container .form_datos .container__form .form__group .input_rfc {
-    width: 65%;
-    height: 25px;
+    height: 40px;
+    padding: 4px;
+    background-color: #BFBFBF;
+    border: none;
+    text-align: center;
+    font-size: 16px;
 }
 
 .container .form_representante {
@@ -65,7 +72,7 @@
 
 .container .form_representante input {
     width: 100%;
-    height: 25px;
+    height: 40px;
     margin-bottom: 10px;
     padding: 5px;
     background-color: #BFBFBF;
@@ -75,44 +82,65 @@
 }
 
 .container .form_footer {
-    width: 96%;
-    height: 35px;
-    margin: 40px 20px;
+    width: 100%;
+    height: 32px;
+    margin: 50px 0;
     font-weight: bold;
     background-color: #BFBFBF;
-    border: 1px solid #BFBFBF;
-    display: flex;
-    align-items: center;
+    border: 1px solid #888888;
     padding-left: 20px;
 }
 
+.container .form_footer label {
+    display: inline-block;
+    padding-top: 5px;
+}
+
 .container .fundamento .fundamento__description {
-    display: flex;
-    margin: 30px 20px;
+    margin: 35px 20px;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .container .fundamento .fundamento__description .img_left {
     margin: auto;
-    height: 150px;
-    width: 150px;
+    height: 250px;
     border: 1px solid rgb(189, 189, 189);
+    float: left;
+}
+
+.container .fundamento .fundamento__description .img_gobierno {
+    margin: auto;
+    float: right;
+    width: 25%;
+}
+
+.container .fundamento .fundamento__description .img_gobierno p {
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    padding: 0;
 }
 
 .container .fundamento .fundamento__description .img_right {
     margin: auto;
-    height: 100px;
-    width: 150px;
+    height: 150px;
     border-radius: 80px;
+    width: 90%;
 }
 
 .container .fundamento .fundamento__description img {
-    width: 50%;
+    width: 25%;
 }
 
 .container .fundamento .fundamento__description p {
-    width: 40%;
-    padding: 0 10px;
+    width: 45%;
+    padding: 0 20px;
     text-align: justify;
+    float: left;
+    font-size: 19px;
 }
 
 .container .fundamento .fundamento__razon {
@@ -126,7 +154,7 @@
 .container .fundamento .fundamento__razon input {
     width: 96%;
     height: 40px;
-    margin: 20px;
+    margin: 10px;
     text-align: center;
     background-color: #BFBFBF;
     border: none;
@@ -134,25 +162,27 @@
 }
 
 .container .fundamento .fundamento__footer {
-    display: flex;
-    margin: 0 20px;
+    margin: 35px 20px;
+    margin-bottom: 200px;
 }
 
 .container .fundamento .fundamento__footer .datos {
     width: 40%;
     text-align: center;
+    float: left;
 }
 
 .container .fundamento .fundamento__footer .datos label {
     font-weight: bold;
     display: block;
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .container .fundamento .fundamento__footer .datos input {
-    display: block;
+    display: inline-block;
     margin: 10px auto;
-    height: 35px;
+    height: 40px;
     background-color: #BFBFBF;
     border: none;
     text-align: center;
@@ -163,6 +193,7 @@
 .container .fundamento .fundamento__footer .firma {
     width: 60%;
     text-align: center;
+    float: right;
 }
 
 .container .fundamento .fundamento__footer .campo_firma {
@@ -172,12 +203,13 @@
 .container .fundamento .fundamento__footer .firma label {
     font-weight: bold;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
 .container .footer {
     width: 96%;
-    height: 35px;
+    height: 40px;
     margin: 0 20px;
     background-color: #BFBFBF;
 }

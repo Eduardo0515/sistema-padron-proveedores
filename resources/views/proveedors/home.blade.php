@@ -11,7 +11,9 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <p>Usuario <strong>{{ Auth::user()->correo }}.</strong></p>
+                        <h5>Bienvenido</h5>
+                        <p>R.F.C.: <strong>{{ Auth::user()->rfc }}.</strong></p>
+                        <p>Correo: <strong>{{ Auth::user()->correo }}.</strong></p>
                     </div>
                 </div>
 

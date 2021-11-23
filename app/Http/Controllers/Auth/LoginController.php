@@ -111,11 +111,18 @@ class LoginController extends Controller
 
     public function proveedorLogout(Request $request)
     {
-      /*  Auth::guard('proveedor')->logout();
+        /*Auth::guard('proveedor')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route('proveedor.showLogin');*/
+       /* $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/');*/
     }
 }

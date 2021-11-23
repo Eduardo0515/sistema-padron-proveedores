@@ -25,7 +25,7 @@
             </div>
             <div class="form__group">
                 <label>Giros</label>
-                <input type="text" value="">
+                <input type="text" value="{{ $infoCredencial != null ? $infoCredencial['giros'] : '' }}">
             </div>
             <div class="form__group">
                 <label>Capital contable</label>
@@ -52,20 +52,40 @@
                 Reglamento de Adquisiciones, Arrendamiento de Bienes Muebles y la Contratación de Servicios Para el
                 Ayuntamiento de Tuxtla Gutiérrez, Chiapas. La presenta acredita a la empresa:
             </p>
-            <img class="img_right" src="{{ asset('img/logo-rojo.jpg') }}" alt="img_logo">
+            <div class="img_gobierno">
+                <img class="img_right" src="{{ asset('img/logo-rojo.jpg') }}" alt="img_logo">
+                <p>GOBIERNO MUNICIPAL</p>
+                <P>2018 - 2021</P>
+            </div>
         </div>
         @if (($padron->tipo_persona == 'Persona moral') | ($padron->tipo_persona == 'Moral'))
             <div class="fundamento__razon">
                 <label>Razón social:</label>
                 <input type="text" value="{{ $padron->razon_social }}">
             </div>
+        @else
+            <style>
+                .container .form_datos .container__form .form__group {
+                    margin-bottom: 25px;
+                }
+
+                .container .fundamento .fundamento__footer {
+                    margin: 50px 20px;
+                    margin-bottom: 220px;
+                }
+
+                .form_datos .container__form {
+                    margin-bottom: 30px;
+                }
+
+            </style>
         @endif
         <div class="fundamento__footer">
             <div class="datos">
                 <label for="">N° DE PROVEEDOR:</label>
-                <input type="text" value="000/2021">
+                <input type="text" value="{{ $infoCredencial != null ? $infoCredencial['num_proveedor'] : '' }}">
                 <label for="">VIGENCIA</label>
-                <label for="">31/12/2022</label>
+                <label for="">{{ $infoCredencial != null ? $infoCredencial['vigencia'] : '' }}</label>
             </div>
             <div class="firma">
                 <div class="campo_firma">
