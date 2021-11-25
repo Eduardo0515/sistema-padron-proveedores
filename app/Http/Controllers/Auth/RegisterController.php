@@ -114,7 +114,7 @@ class RegisterController extends Controller
                 'tipo_persona' => $request['tipo_persona'],
                 'razon_social' => $request['razon_social'],
             ]);
-            return redirect()->intended('login/proveedor');
+            return redirect()->route('proveedor.showLogin');
         }
     }
 }

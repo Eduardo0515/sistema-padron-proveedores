@@ -12,7 +12,7 @@
     <link rel="stylesheet"
         href="{{ asset('css/fonts_google.css?family=Source+Sans+Pro:300,400,400i,700&display=fallback') }}">
     <link href="{{ asset('css/innovacion.tuxtla.css') }}" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="{{{ asset('favicons/favicon.png') }}}">
+    <link rel="shortcut icon" href="{{ asset('favicons/favicon.png') }}">
 </head>
 
 <body class="hold-transition">
@@ -22,19 +22,7 @@
     </main>
 
     <script src="{{ asset('js/innovacion.tuxtla.js') }}"></script>
-    <script type="text/javascript">
-        let divRazonSocial = document.getElementById('div-razon');
-        divRazonSocial.style = "display:none";
-        
-        $('#select_tipo_persona').on('change', function() {
-            let conceptName = $('#select_tipo_persona').find(":selected").text();
-            if(conceptName.trim() == 'Persona moral' | conceptName.trim() == 'Moral'){
-                divRazonSocial.style = "display:block";
-            }else{
-                divRazonSocial.style = "display:none";
-            }
-        });
-    </script>
 </body>
+@yield('scripts')
 
 </html>

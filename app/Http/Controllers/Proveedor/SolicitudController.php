@@ -20,7 +20,7 @@ class SolicitudController extends Controller
 {
     public function index()
     {
-        $solicitudes = Solicitud::where('user_proveedor_id', '=', Auth::user()->id)->paginate();
+        $solicitudes = Solicitud::where('user_proveedor_id', '=', Auth::user()->id)->orderBy('created_at', 'desc')->paginate();
 
         return view('proveedors.solicitudes.index', compact('solicitudes'));
     }
@@ -32,12 +32,17 @@ class SolicitudController extends Controller
 
     public function edit(Solicitud $solicitud)
     {
-        return view('proveedors.solicitudes.edit_info', compact('solicitud'));
+        if (trim($solicitud->estatus) == 'Para corrección') {
+            return view('proveedors.solicitudes.edit_info', compact('solicitud'));
+        } else {
+            return redirect()->route('solicitud.index');
+        }
     }
 
     public function createDocs($solicitud_id)
     {
         $solicitud = Solicitud::find($solicitud_id);
+        // Validar que se puedan actualizar los documentos solo cuando el estatus de la solicitud sea [En captura]
         if (trim($solicitud->estatus) == 'En captura') {
             $requisitos = Requisito::all();
             return view('proveedors.solicitudes.create', compact('requisitos', 'solicitud'));
@@ -48,7 +53,25 @@ class SolicitudController extends Controller
 
     public function editDocs(Solicitud $solicitud)
     {
-        return view('proveedors.solicitudes.edit_docs', compact('solicitud'));
+        // Únicamente se podrá editar los documentos de la solicitud que tenga estatus en corrección
+        if (trim($solicitud->estatus) == 'Para corrección') {
+            $solicitudRequisitos = $solicitud->solicitudRequisitos;
+            $requisitos = Requisito::all();
+            foreach ($requisitos as $requisito) {
+                $requisito->docExists = false;
+                // Se verifica si ya existe un documento subido para cada requisito
+                foreach ($solicitudRequisitos as $solicitudRequisito) {
+                    // Si hay documento previo, se pasa la bandera [docExists] a true y también se guarda el id de [solicitudRequisito]
+                    if ($requisito->id == $solicitudRequisito->requisito_id) {
+                        $requisito->docExists = true;
+                        $requisito->solicitudReqId = $solicitudRequisito->id;
+                    }
+                }
+            }
+            return view('proveedors.solicitudes.edit_docs', compact('solicitud', 'requisitos'));
+        } else {
+            return redirect()->route('solicitud.index');
+        }
     }
 
     public function validateSolicitud(Request $request)
@@ -168,34 +191,39 @@ class SolicitudController extends Controller
 
     public function updateDocs(Request $request, Solicitud $solicitud)
     {
-        $solicitudRequisitos = $solicitud->solicitudRequisitos;
+        $requisitos = Requisito::all();
         $messages = ['mimes' => 'El documento :attribute debe ser de tipo PDF.'];
         $rules = [];
         $attributes = [];
-        // Se recorren los requisitos subidos previamente para agregar reglas, 
-        // estos requisitos serán los que se podrán editar
-        foreach ($solicitudRequisitos as $solicitudRequisito) {
+        // Se recorren los requisitos para agregar reglas de validación
+        foreach ($requisitos as $requisito) {
             // Solo si se ha subido un documento en el [$request] será validado para que sea de tipo PDF
-            if ($request->hasFile('doc' . $solicitudRequisito->requisito_id)) {
-                $docId = 'doc' . $solicitudRequisito->requisito_id;
+            if ($request->hasFile('doc' . $requisito->id)) {
+                $docId = 'doc' . $requisito->id;
                 $rules = Arr::add($rules, $docId, 'mimes:pdf');
-                $attributes = Arr::add($attributes, $docId, $solicitudRequisito->nombre);
+                $attributes = Arr::add($attributes, $docId, $requisito->nombre);
             }
         }
-
+        // Se verifica si se ha realizado algún cambio con los documentos, para validar y actualizar,
+        // en caso contrario, se reenvía a la vista con un mensaje de que no se ha modificado
         if (count($rules) > 0) {
             $request->validate($rules, $messages, $attributes);
 
-            foreach ($solicitudRequisitos as $solicitudRequisito) {
-                if ($request->hasFile('doc' . $solicitudRequisito->requisito_id)) {
+            foreach ($requisitos as $requisito) {
+                if ($request->hasFile('doc' . $requisito->id)) {
                     // Se almaena el documento que viene del [$request], el nombre será el mismo que el subido anteriormente
-                    // esto hará que el documento anterior sea reemplazado por el nuevo. 
-                    $request['doc' . $solicitudRequisito->requisito_id]->storeAs(
+                    // esto hará que el documento anterior sea reemplazado por el nuevo en el storage. 
+                    $ruta = $request['doc' . $requisito->id]->storeAs(
                         'solicitud-documentos',
-                        $solicitudRequisito->solicitud_id . '-' . $solicitudRequisito->requisito_id,
+                        $solicitud->id . '-' . $requisito->id,
                         'public'
                     );
-                    //$request['doc' . $solicitudRequisito->requisito_id]->move();
+                    // Si hay un documento que no se había subido previamente, se creará el registro correspondiente
+                    // en la base de datos, de otro modo, solo se actualizará
+                    SolicitudRequisito::updateOrCreate(
+                        ['requisito_id' => $requisito->id, 'solicitud_id' => $solicitud->id],
+                        ['nombre' => $requisito->nombre, 'ruta' => $ruta]
+                    );
                 }
             }
             return redirect()->route('solicitud.show', $solicitud->id);
@@ -230,7 +258,9 @@ class SolicitudController extends Controller
     public function pago($solicitud_id)
     {
         $solicitud = Solicitud::find($solicitud_id);
+        // Al realizar el pago, se copian todos los datos de la [solicitud] a la tabla de [padron] 
         $padron = Padron::create($solicitud->toArray());
+        // Se mueven los documentos de la carpeta [solicitud-documentos] a [proveedor-documentos]
         foreach ($solicitud->solicitudRequisitos as $solicitudRequisito) {
             $name = $padron->id . '-' . $solicitudRequisito->requisito_id;
             $oldPath = 'public/' . $solicitudRequisito->ruta;
@@ -245,6 +275,7 @@ class SolicitudController extends Controller
                 'padron_id' => $padron->id
             ]);
         }
+        // En este punto termina el proceso de la solicitud, por lo que será eliminada
         $solicitud->delete();
         return redirect()->route('solicitud.mensaje');
     }

@@ -258,7 +258,7 @@
                                         <div class="card-body">
                                             <p class="card-text">{{ $solicitudRequisito->nombre }}</p>
                                             <a href="{{ route('doc.open', $solicitudRequisito->id) }}"
-                                                class="card-link">Ver
+                                                class="card-link" target="_blank">Ver
                                                 documento</a>
                                         </div>
                                     </div>

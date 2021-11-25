@@ -195,8 +195,8 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <p class="card-text">{{ $padronRequisito->nombre }}</p>
-                                            <a href="{{ route('admin.opendoc', $padronRequisito->id) }}"
-                                                class="card-link">Ver
+                                            <a href="{{ route('admin.padron.open', $padronRequisito->id) }}"
+                                                class="card-link" target="_blank">Ver
                                                 documento</a>
                                         </div>
                                     </div>
@@ -262,7 +262,7 @@
                                     <div class="form-group">
                                         <label for="vigencia">Vigencia</label>
                                         <input type="text" class="form-control @error('vigencia') is-invalid @enderror"
-                                            id="vigencia" name="vigencia" placeholder="Vigencia (31-12-2021)">
+                                            id="vigencia" name="vigencia" placeholder="Vigencia (31/12/2021)">
                                         @error('vigencia')
                                             <span class="invalid-feedback" role="alert">
                                                 <small>{{ $message }}</small>

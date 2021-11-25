@@ -13,7 +13,7 @@ class AdminSolicitudController extends Controller
 {
     public function index()
     {
-        $solicitudes = Solicitud::where('estatus', '=', 'En revisión')->paginate();
+        $solicitudes = Solicitud::where('estatus', '=', 'En revisión')->orderBy('created_at', 'desc')->paginate();
 
         return view('admin.solicituds', compact('solicitudes'));
     }
@@ -77,5 +77,12 @@ class AdminSolicitudController extends Controller
             }
         }
         SolicitudRequisito::where('solicitud_id', '=', $solicitud_id)->delete();
+    }
+
+    public function openDocument(SolicitudRequisito $solicitudRequisito)
+    {
+        $storage = Storage::path('public\\' . $solicitudRequisito->ruta);
+
+        return response()->file($storage);
     }
 }

@@ -47,13 +47,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/solicitud/{id}', 'Admin\AdminSolicitudController@show')->name('admin.versolicitud');
     Route::post('admin/solicitud/rechazar', 'Admin\AdminSolicitudController@rechazar')->name('admin.rechazar');
     Route::get('admin/solicitud/aceptar/{id}', 'Admin\AdminSolicitudController@aceptar')->name('admin.aceptar');
-    // Abrir documento
+    // Abrir documento de solicitud
     Route::get('admin/documento/{id}', 'Proveedor\SolicitudController@openDocument')->name('admin.opendoc');
     // Comentarios
     Route::post('admin/comentarios', 'Admin\ComentarioController@read')->name('comentario.read');
     // Datos del padrón
     Route::get('admin/padron', 'Admin\AdminPadronController@index')->name('admin.padron');
     Route::get('admin/padron/{padron}', 'Admin\AdminPadronController@show')->name('admin.verpadron');
+    // Abrir documento de padron
+    Route::get('admin/documento/padron/{id}', 'Admin\AdminPadronController@openDocument')->name('admin.padron.open');
     // Generar credencial
     Route::view('admin/credencial/{id}', 'admin.credencial.credencial')->name('admin.credencial');
     Route::get('admin/credencial/vista-previa/{padron}', 'Admin\AdminPadronController@vistaPrevia')->name('admin.credencial_previa');

@@ -129,3 +129,19 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        let divRazonSocial = document.getElementById('div-razon');
+        divRazonSocial.style = "display:none";
+
+        $('#select_tipo_persona').on('change', function() {
+            let conceptName = $('#select_tipo_persona').find(":selected").text();
+            if (conceptName.trim() == 'Persona moral' | conceptName.trim() == 'Moral') {
+                divRazonSocial.style = "display:block";
+            } else {
+                divRazonSocial.style = "display:none";
+            }
+        });
+    </script>
+@endsection

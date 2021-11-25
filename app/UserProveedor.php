@@ -28,6 +28,6 @@ class UserProveedor extends Authenticatable
 
     public function tipoPersona()
     {
-        return $this->belongsTo('App\Models\Proveedor\TipoPersona', 'id');
+        return $this->belongsTo('App\Models\Proveedor\TipoPersona', 'tipo_persona');
     }
 }

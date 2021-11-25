@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Proveedor\Padron;
+use App\Models\Proveedor\PadronRequisito;
+use App\Models\Proveedor\SolicitudRequisito;
 use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPadronController extends Controller
 {
     public function index()
     {
-        $padrons = Padron::paginate();
+        $padrons = Padron::orderBy('created_at', 'desc')->paginate();
 
         return view('admin.padron', compact('padrons'));
     }
@@ -44,7 +47,17 @@ class AdminPadronController extends Controller
         $request->validate($rules, $messages);
 
         $infoCredencial = $request->all();
+        // Se envían a la vista los datos del [padron] y datos complementarios contenidos en [infoCredencial]
         $pdf = PDF::loadView('admin.credencial.credencial_pdf', compact('padron', 'infoCredencial'));
+        // Se muestra el pdf en el navegador
         return $pdf->stream('credencial.pdf');
+    }
+
+    public function openDocument($id)
+    {
+        $padronRequisito = PadronRequisito::find($id);
+        $storage = Storage::path($padronRequisito->ruta);
+
+        return response()->file($storage);
     }
 }
