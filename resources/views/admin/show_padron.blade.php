@@ -85,6 +85,19 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="giros" class="col-form-label text-md-right">{{ __('Giros o actividades') }}</label>
+                    <div class="d-flex flex-wrap">
+                        @foreach ($padron->giros as $giro)
+                            <div class="mr-2 mb-2 p-1 border border-secondary rounded">{{ $giro->nombre }}</div>
+                        @endforeach
+                    </div>
+                    <div class="form-group">
+                        <a data-toggle="modal" data-target="#editarGiros" class="text-danger text-bold" href="">Editar
+                            giros</a>
+                    </div>
+                </div>
+
                 <h5 class="form-group mt-4">Dirección</h5>
                 <div class="dropdown-divider"></div>
                 <div class="form-row">
@@ -223,6 +236,52 @@
                     </div>
                 </div>
 
+                <!-- Editar giros Modal -->
+                <div class="modal fade" id="editarGiros" tabindex="-1" role="dialog" aria-labelledby="editarGirosLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editarGirosLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('admin.cambiarGiros', $padron->id) }}" method="POST">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="giros"
+                                            class="col-form-label text-md-right">{{ __('Seleccione los giros o actividades que realiza') }}</label>
+
+                                        <select required class="giros form-control @error('giros') is-invalid @enderror"
+                                            name="giros[]" multiple>
+                                            @foreach ($giros as $giro)
+                                                @if ($padron->giros->contains($giro->id))
+                                                    <option selected value="{{ $giro->id }}">{{ $giro->nombre }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $giro->id }}">{{ $giro->nombre }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @error('giros')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-danger">Guardar cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End editar giros modal -->
+
                 <!-- Modal Datos complementarios para generar credecnial -->
                 <div class="modal fade" id="generar-credencial" tabindex="-1" role="dialog"
                     aria-labelledby="generar-credencialLabel" aria-hidden="true">
@@ -238,21 +297,12 @@
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="giros">Giros</label>
-                                        <input type="text" class="form-control @error('giros') is-invalid @enderror"
-                                            id="giros" name="giros" placeholder="Ingrese los giros de la empresa o persona (342-234-234)">
-                                        @error('giros')
-                                            <span class="invalid-feedback" role="alert">
-                                                <small>{{ $message }}</small>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label for="num_proveedor">Número de proveedor</label>
-                                        <input type="text"
+                                        <input required type="text"
                                             class="form-control @error('num_proveedor') is-invalid @enderror"
                                             id="num_proveedor" name="num_proveedor"
-                                            placeholder="Escriba el número de proveedor">
+                                            placeholder="Escriba el número de proveedor"
+                                            value='{{ old('num_proveedor') }}'>
                                         @error('num_proveedor')
                                             <span class="invalid-feedback" role="alert">
                                                 <small>{{ $message }}</small>
@@ -261,8 +311,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="vigencia">Vigencia</label>
-                                        <input type="text" class="form-control @error('vigencia') is-invalid @enderror"
-                                            id="vigencia" name="vigencia" placeholder="Vigencia (31/12/2021)">
+                                        <input required type="text"
+                                            class="form-control @error('vigencia') is-invalid @enderror" id="vigencia"
+                                            name="vigencia" placeholder="Vigencia (31/12/2021)"
+                                            value='{{ old('vigencia') }}'>
                                         @error('vigencia')
                                             <span class="invalid-feedback" role="alert">
                                                 <small>{{ $message }}</small>
@@ -287,12 +339,26 @@
 
 @section('content_js')
     @if (count($errors) > 0)
-        <script type="text/javascript">
-            $('#generar-credencial').modal('show');
-        </script>
+        @if ($errors->first('giros') != null)
+            <script type="text/javascript">
+                $('#editarGiros').modal('show');
+            </script>
+        @else
+            <script type="text/javascript">
+                $('#generar-credencial').modal('show');
+            </script>
+        @endif
     @endif
+
     <script type="text/javascript" src="{{ asset('/js/map.js') }}"></script>
     <script type="text/javascript">
         createMap({{ $padron->latitud }}, {{ $padron->longitud }}, false);
+    </script>
+
+    <script src="{{ asset('js/select2/select2.full.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.giros').select2({});
+        });
     </script>
 @endsection

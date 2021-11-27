@@ -30,4 +30,8 @@ class Solicitud extends Model
         // Obtener todos los comentarios, mostrando los más recientes primero
         return $this->hasMany('App\Models\Proveedor\Comentario')->orderBy('created_at', 'desc');
     }
+
+    public function giros(){
+        return $this->belongsToMany('App\Models\Proveedor\Giro');
+    }
 }

@@ -53,17 +53,17 @@
                     </thead>
                     <tbody>
                         <!--  @foreach ($solicitud->solicitudRequisitos as $solicitudRequisito)
-                                                        <tr>
-                                                            <td class="col-md-4">{{ $solicitudRequisito->nombre }}</td>
-                                                            <td class="col-md-4"> <input type="file"
-                                                                    name="doc{{ $solicitudRequisito->requisito_id }}"
-                                                                    class="form-control @error('doc{{ $solicitudRequisito->requisito_id }}') is-invalid @enderror">
-                                                            </td>
-                                                            <td>
-                                                                <a href="{{ route('doc.open', $solicitudRequisito->id) }}" class="card-link">Ver
-                                                                    documento</a>
-                                                            </td>
-                                                    @endforeach -->
+                                                            <tr>
+                                                                <td class="col-md-4">{{ $solicitudRequisito->nombre }}</td>
+                                                                <td class="col-md-4"> <input type="file"
+                                                                        name="doc{{ $solicitudRequisito->requisito_id }}"
+                                                                        class="form-control @error('doc{{ $solicitudRequisito->requisito_id }}') is-invalid @enderror">
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ route('doc.open', $solicitudRequisito->id) }}" class="card-link">Ver
+                                                                        documento</a>
+                                                                </td>
+                                                        @endforeach -->
                         @foreach ($requisitos as $requisito)
                             <tr>
                                 <td class="col-md-4">{{ $requisito->nombre }}</td>

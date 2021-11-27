@@ -7,6 +7,7 @@ use App\Models\Proveedor\Requisito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\File;
+use App\Models\Proveedor\Giro;
 use App\Models\Proveedor\Padron;
 use App\Models\Proveedor\PadronRequisito;
 use App\Models\Proveedor\Solicitud;
@@ -27,13 +28,15 @@ class SolicitudController extends Controller
 
     public function create()
     {
-        return view('proveedors.solicitudes.create_info');
+        $giros = Giro::all();
+        return view('proveedors.solicitudes.create_info', compact('giros'));
     }
 
     public function edit(Solicitud $solicitud)
     {
         if (trim($solicitud->estatus) == 'Para corrección') {
-            return view('proveedors.solicitudes.edit_info', compact('solicitud'));
+            $giros = Giro::all();
+            return view('proveedors.solicitudes.edit_info', compact('solicitud', 'giros'));
         } else {
             return redirect()->route('solicitud.index');
         }
@@ -53,7 +56,7 @@ class SolicitudController extends Controller
 
     public function editDocs(Solicitud $solicitud)
     {
-        // Únicamente se podrá editar los documentos de la solicitud que tenga estatus en corrección
+        // Únicamente se podrá editar los documentos de la solicitud que tenga estatus [Para corrección] 
         if (trim($solicitud->estatus) == 'Para corrección') {
             $solicitudRequisitos = $solicitud->solicitudRequisitos;
             $requisitos = Requisito::all();
@@ -78,6 +81,7 @@ class SolicitudController extends Controller
     {
         $messages = [
             "rfc.required" => "RFC Obligatorio",
+            "giros.required" => "Seleccione al menos una opción",
         ];
         $validator = Validator::make($request->all(), [
             'telefono' => ['required', 'max:45'],
@@ -85,6 +89,7 @@ class SolicitudController extends Controller
             'nombres' => ['required', 'max:255'],
             'apellidos' => ['required', 'max:255'],
             'capital_contable' => ['required', 'max:255'],
+            'giros' => ['required'],
             'domicilio' => ['required', 'max:255'],
             'num_exterior' => ['required', 'max:45'],
             'num_interior' => ['max:45'],
@@ -115,6 +120,8 @@ class SolicitudController extends Controller
             ];
             $request->merge($datosUsuario);
             $solicitud = Solicitud::create($request->all());
+            // Se agregan los giros de la empresa
+            $solicitud->giros()->attach($request->giros);
             return redirect()->route('solicitud.createDocs', $solicitud->id);
         }
     }
@@ -184,7 +191,7 @@ class SolicitudController extends Controller
                 $nuevaSolicitud['razon_social'],
             );
             $solicitud->update($nuevaSolicitud);
-
+            $solicitud->giros()->sync($request->giros);
             return redirect()->route('solicitud.show', $solicitud->id);
         }
     }
@@ -275,6 +282,8 @@ class SolicitudController extends Controller
                 'padron_id' => $padron->id
             ]);
         }
+        // También se pasa de giros de la solicitud a giros del padrón
+        $padron->giros()->attach($solicitud->giros);
         // En este punto termina el proceso de la solicitud, por lo que será eliminada
         $solicitud->delete();
         return redirect()->route('solicitud.mensaje');

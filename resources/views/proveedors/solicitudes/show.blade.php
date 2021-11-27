@@ -61,15 +61,6 @@
                 <h4>Datos</h4>
                 <div class="dropdown-divider"></div>
 
-                <!--<div class="form-group">
-                                                                                        <label for="fecha" class="col-form-label text-md-right">{{ __('Fecha de solicitud') }}</label>
-                                                                                        <div class="">
-                                                                                            <label type="text" class="form-control"
-                                                                                                name="fecha">{{ $solicitud->created_at->format('d-m-Y') }}</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    -->
-
                 <div class="form-group">
                     <label for="tipo_persona" class="col-form-label text-md-right">{{ __('Tipo de persona') }}</label>
                     <div class="">
@@ -137,12 +128,21 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="giros" class="col-form-label text-md-right">{{ __('Giros o actividades') }}</label>
+
+                    <div class="d-flex flex-wrap">
+                        @foreach ($solicitud->giros as $giro)
+                            <div class="mr-2 mb-2 p-1 border border-secondary rounded">{{ $giro->nombre }}</div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="capital_contable"
                         class="col-form-label text-md-right">{{ __('Capital contable') }}</label>
 
                     <div class="">
                         <label class="form-control">{{ $solicitud->capital_contable }}</label>
-
                     </div>
                 </div>
 
@@ -295,6 +295,6 @@
 @section('script')
     <script type="text/javascript" src="{{ asset('/js/map.js') }}"></script>
     <script type="text/javascript">
-        createMap({{$solicitud->latitud}}, {{$solicitud->longitud}}, false);
+        createMap({{ $solicitud->latitud }}, {{ $solicitud->longitud }}, false);
     </script>
 @endsection

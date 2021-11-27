@@ -86,6 +86,16 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="giros" class="col-form-label text-md-right">{{ __('Giros o actividades') }}</label>
+
+                    <div class="d-flex flex-wrap">
+                        @foreach ($solicitud->giros as $giro)
+                            <div class="mr-2 mb-2 p-1 border border-secondary rounded">{{ $giro->nombre }}</div>
+                        @endforeach
+                    </div>
+                </div>
+
                 <h5 class="form-group mt-4">Dirección</h5>
                 <div class="dropdown-divider"></div>
                 <div class="form-row">

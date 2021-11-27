@@ -11,8 +11,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Fecha</th>
-                                <th scope="col">Correo usuario</th>
                                 <th scope="col">RFC</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Tipo persona</th>
+                                <th scope="col">Razón social / Nombre</th>
                                 <th scope="col">Acción</th>
                             </tr>
                         </thead>
@@ -20,10 +22,16 @@
                             @foreach ($padrons as $padron)
                                 <tr>
                                     <td>{{ $padron->created_at->format('d-m-Y') }}</td>
-                                    <td>{{ $padron->correo }}</td>
                                     <td>{{ $padron->rfc }}</td>
+                                    <td>{{ $padron->correo }}</td>
+                                    <td>{{ $padron->tipo_persona }}</td>
+                                    @if (($padron->tipo_persona == 'Persona moral') | ($padron->tipo_persona == 'Moral'))
+                                        <td>{{ $padron->razon_social }}</td>
+                                    @else
+                                        <td>{{ $padron->nombres }} {{ $padron->apellidos }}</td>
+                                    @endif
                                     <td> <a href="{{ route('admin.verpadron', $padron->id) }}" class="text-danger">Ver
-                                            todos los datos</a></td>
+                                            datos</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

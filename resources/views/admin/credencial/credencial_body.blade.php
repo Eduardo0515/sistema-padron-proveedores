@@ -25,7 +25,7 @@
             </div>
             <div class="form__group">
                 <label>Giros</label>
-                <input type="text" value="{{ $infoCredencial != null ? $infoCredencial['giros'] : '' }}">
+                <input type="text" value="{{ $textGiros }}">
             </div>
             <div class="form__group">
                 <label>Capital contable</label>

@@ -56,11 +56,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/padron/{padron}', 'Admin\AdminPadronController@show')->name('admin.verpadron');
     // Abrir documento de padron
     Route::get('admin/documento/padron/{id}', 'Admin\AdminPadronController@openDocument')->name('admin.padron.open');
+    // Editar giros
+    Route::post('admin/giros/{padron}', 'Admin\AdminPadronController@cambiarGiros')->name('admin.cambiarGiros');
     // Generar credencial
-    Route::view('admin/credencial/{id}', 'admin.credencial.credencial')->name('admin.credencial');
     Route::get('admin/credencial/vista-previa/{padron}', 'Admin\AdminPadronController@vistaPrevia')->name('admin.credencial_previa');
     Route::post('admin/credencial/generar/{padron}', 'Admin\AdminPadronController@generarCredencial')->name('admin.generar-credencial');
-
 });
 
 Auth::routes();
@@ -96,8 +96,6 @@ Route::middleware(['auth:proveedor'])->group(function () {
     Route::post('proveedor/comentarios', 'Admin\ComentarioController@read')->name('proveedor.comentario.read');
     // Cambiar estatus a revisión después de editar solicitud
     Route::get('proveedor/solicitud/cambiar-estatus/{solicitud}', 'Proveedor\SolicitudController@cambiarEstatus')->name('solicitud.cambiarEstatus');
-    // Cerrar sesión
-    Route::post('proveedor/logout', 'Auth\LoginController@proveedorLogout')->name('proveedor.logout');
 });
 
 // Proveedor authentication
@@ -105,3 +103,4 @@ Route::get('/login/proveedor', 'Auth\LoginController@showProveedorLoginForm')->n
 Route::post('/login/proveedor', 'Auth\LoginController@proveedorLogin')->name('proveedor.login');
 Route::get('/register/proveedor', 'Auth\RegisterController@showProveedorRegisterForm')->name('proveedor.showRegister');
 Route::post('/register/proveedor', 'Auth\RegisterController@createProveedor')->name('proveedor.register');
+Route::post('proveedor/logout', 'Auth\LoginController@proveedorLogout')->name('proveedor.logout');

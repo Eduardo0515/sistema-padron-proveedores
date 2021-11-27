@@ -24,4 +24,9 @@ class Padron extends Model
     {
         return $this->hasMany('App\Models\Proveedor\PadronRequisito');
     }
+
+    public function giros()
+    {
+        return $this->belongsToMany('App\Models\Proveedor\Giro');
+    }
 }

@@ -169,6 +169,27 @@
                                     </span>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="giros"
+                                    class="col-form-label text-md-right">{{ __('Seleccione los giros o actividades que realiza') }}</label>
+
+                                <select required class="giros form-control @error('giros') is-invalid @enderror"
+                                    name="giros[]" multiple>
+                                    @foreach ($giros as $giro)
+                                        @if ($solicitud->giros->contains($giro->id))
+                                            <option selected value="{{ $giro->id }}">{{ $giro->nombre }}</option>
+                                        @else
+                                            <option value="{{ $giro->id }}">{{ $giro->nombre }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('giros')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
                         <h5 class="form-group mt-4">Dirección</h5>
@@ -303,7 +324,8 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="entidad" class="col-form-label text-md-right">{{ __('Entidad') }}</label>
+                                    <label for="entidad"
+                                        class="col-form-label text-md-right">{{ __('Entidad') }}</label>
 
                                     <div class="">
                                         <input id="entidad" type="text"
@@ -395,5 +417,10 @@
     <script type="text/javascript" src="{{ asset('/js/map.js') }}"></script>
     <script type="text/javascript">
         createMap({{ $solicitud->latitud }}, {{ $solicitud->longitud }}, true);
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.giros').select2();
+        });
     </script>
 @endsection
