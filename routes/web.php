@@ -51,9 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/documento/{id}', 'Proveedor\SolicitudController@openDocument')->name('admin.opendoc');
     // Comentarios
     Route::post('admin/comentarios', 'Admin\ComentarioController@read')->name('comentario.read');
+    // Exportar datos a excel
+    Route::post('admin/padron/exportar-excel', 'Admin\AdminPadronController@export')->name('admin.exportar_excel');
     // Datos del padrón
     Route::get('admin/padron', 'Admin\AdminPadronController@index')->name('admin.padron');
     Route::get('admin/padron/{padron}', 'Admin\AdminPadronController@show')->name('admin.verpadron');
+    // Filtrar datos del padrón
+    Route::post('admin/filtrar-padron', 'Admin\AdminPadronController@filtrar')->name('admin.filtrar');
     // Abrir documento de padron
     Route::get('admin/documento/padron/{id}', 'Admin\AdminPadronController@openDocument')->name('admin.padron.open');
     // Editar giros
@@ -103,4 +107,4 @@ Route::get('/login/proveedor', 'Auth\LoginController@showProveedorLoginForm')->n
 Route::post('/login/proveedor', 'Auth\LoginController@proveedorLogin')->name('proveedor.login');
 Route::get('/register/proveedor', 'Auth\RegisterController@showProveedorRegisterForm')->name('proveedor.showRegister');
 Route::post('/register/proveedor', 'Auth\RegisterController@createProveedor')->name('proveedor.register');
-Route::post('proveedor/logout', 'Auth\LoginController@proveedorLogout')->name('proveedor.logout');
+Route::post('/proveedor/logout', 'Auth\LoginController@proveedorLogout')->name('proveedor.logout');

@@ -22,7 +22,8 @@
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Seleccione</label>
                                     </div>
-                                    <select id="select_tipo_persona" class="custom-select" id="inputGroupSelect01"
+                                    <select id="select_tipo_persona"
+                                        class="custom-select @error('rfc') is-invalid @enderror" id="inputGroupSelect01"
                                         name="tipo_persona">
                                         @foreach ($tipo_personas as $tipo_persona)
                                             <option value="{{ $tipo_persona->id }}">

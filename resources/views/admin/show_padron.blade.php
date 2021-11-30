@@ -311,7 +311,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="vigencia">Vigencia</label>
-                                        <input required type="text"
+                                        <input required type="date"
                                             class="form-control @error('vigencia') is-invalid @enderror" id="vigencia"
                                             name="vigencia" placeholder="Vigencia (31/12/2021)"
                                             value='{{ old('vigencia') }}'>

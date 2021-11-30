@@ -38,22 +38,30 @@
                     <div class="card">
                         <div class="card-header bg-light">La solicitud debe ser corregida</div>
                         <div class="card-body">
-                            <p class="card-text">Su solicitud ha sido rechazada, realice la corrección para continuar
-                                con su solicitud.</p>
-                            <p class="card-text mt-3">Presione "Enviar solicitud" cuando termine de editar la solicitud para
-                                ser enviada y revisada nuevamente.</p>
                             <div class="row">
-                                <a href="{{ route('solicitud.edit', $solicitud->id) }}"
-                                    class="card-link mx-4"><strong>Editar
-                                        datos</strong></a>
-                                <a href="{{ route('solicitud.editDocs', $solicitud->id) }}"
-                                    class="card-link mx-4"><strong>Editar
-                                        documentos</strong></a>
+                                <div class="col-md-8">
+                                    <p class="card-text">Su solicitud ha sido rechazada, realice la corrección para
+                                        continuar
+                                        con su solicitud.</p>
+                                    <p class="card-text mt-3">Presione "Enviar solicitud" cuando termine de editar la
+                                        solicitud para
+                                        ser enviada y revisada nuevamente.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ route('solicitud.edit', $solicitud->id) }}"
+                                        class="card-link mx-4 d-block mb-1"><strong>Editar
+                                            datos</strong></a>
+                                    <a href="{{ route('solicitud.editDocs', $solicitud->id) }}"
+                                        class="card-link mx-4 d-block mb-1"><strong>Editar
+                                            documentos</strong></a>
 
-                                <a href="{{ route('solicitud.cambiarEstatus', $solicitud->id) }}"
-                                    class="card-link text-dark mx-4"><strong>Enviar
-                                        solicitud</strong></a>
+                                    <a href="{{ route('solicitud.cambiarEstatus', $solicitud->id) }}"
+                                        class="card-link text-dark mx-4 d-block mb-1"><strong>Enviar
+                                            solicitud</strong></a>
+                                </div>
                             </div>
+
+
                         </div>
                     </div>
                 @endif

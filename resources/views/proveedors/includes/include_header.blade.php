@@ -8,6 +8,9 @@
           <li class="nav-item d-none d-sm-inline-block">
               <a href="{{ route('proveedor.info') }}" class="nav-link">Mi información</a>
           </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('solicitud.index') }}" class="nav-link">Solicitudes</a>
+        </li>
       </ul>
 
       <!-- Right navbar links -->
@@ -18,12 +21,12 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{{ route('logout') }}"
+              <a class="nav-link" href="{{ route('proveedor.logout') }}"
                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" role="button">
                   <i class="fas fa-sign-out-alt"></i>
               </a>
           </li>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <form id="logout-form" action="{{ route('proveedor.logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
           </form>
       </ul>

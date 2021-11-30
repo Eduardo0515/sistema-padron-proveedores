@@ -5,12 +5,10 @@
         <div class="row justify-content-center mt-4">
 
             <div class="col-md-8">
-                <a href="{{ route('proveedor.home') }}" class="badge badge-dark my-3"><i class="fas fa-arrow-left"></i>
-                    Regresar</a>
 
                 @if (count($solicitudes) > 0)
-                    <h3>Solicitudes realizadas</h3>
-                    <div class="my-3 d-flex justify-content-end">
+                    <div class="my-3 d-flex justify-content-between">
+                        <h3>Solicitudes realizadas</h3>
                         <a class="btn btn-danger" href="{{ route('solicitud.create') }}" role="button">Nueva solicitud</a>
                     </div>
                     <table class="table">

@@ -41,7 +41,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:proveedor')->except('logout');
+        $this->middleware('guest:proveedor')->except(['logout', 'proveedorLogout']);
     }
 
 
@@ -101,7 +101,7 @@ class LoginController extends Controller
             return back()->withErrors($validator)->withInput();
         } else {
             if (Auth::guard('proveedor')->attempt(['rfc' => $request->rfc, 'password' => $request->password], $request->get('remember'))) {
-                return redirect()->intended('proveedor.home');
+                return redirect()->route('proveedor.home');
             }
             return back()->withInput($request->only('rfc'))->withErrors([
                 'password' => 'Contraseña incorrecta.'
@@ -111,18 +111,11 @@ class LoginController extends Controller
 
     public function proveedorLogout(Request $request)
     {
-        /*Auth::guard('proveedor')->logout();
+        Auth::guard()->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('proveedor.showLogin');*/
-       /* $this->guard()->logout();
-
-        $request->session()->flush();
-
-        $request->session()->regenerate();
-
-        return redirect('/');*/
+        return redirect()->route('proveedor.showLogin');
     }
 }

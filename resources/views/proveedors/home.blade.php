@@ -16,11 +16,7 @@
                         <p>Correo: <strong>{{ Auth::user()->correo }}.</strong></p>
                     </div>
                 </div>
-
-                <div class="my-3 d-flex justify-content-end">
-                    <a class="btn btn-danger" href="{{route('solicitud.index')}}" role="button">Ver las solicitudes realizadas</a>
-                </div>
             </div>
-        </div> 
+        </div>
     </div>
 @endsection
