@@ -14,19 +14,34 @@ class CreateUsersMenusTable extends Migration
     public function up()
     {
         Schema::create('users_menus', function (Blueprint $table) {
-            $table->bigInteger('user_id');
-            $table->integer('menu_id')->primary();
-            $table->integer('ver');
-            $table->integer('agregar');
-            $table->integer('editar');
-            $table->integer('eliminar');
-            $table->integer('impresion');
-            $table->integer('exportar');
-            $table->integer('validar');
-            $table->integer('estatus');
-            $table->bigInteger('user_created');
-            $table->date('fecha_created');
-            //$table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->unsignedBigInteger('menu_id');
+            $table->foreign('menu_id')
+                ->references('id')
+                ->on('tbl_menus')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->integer('ver')->nullable();
+            $table->integer('agregar')->nullable();
+            $table->integer('editar')->nullable();
+            $table->integer('eliminar')->nullable();
+            $table->integer('impresion')->nullable();
+            $table->integer('exportar')->nullable();
+            $table->integer('validar')->nullable();
+            $table->integer('estatus')->nullable();
+            $table->unsignedBigInteger('user_created');
+            $table->foreign('user_created')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->date('fecha_created')->nullable();
+            $table->timestamps();
         });
     }
 

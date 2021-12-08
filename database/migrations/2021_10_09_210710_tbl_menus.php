@@ -15,21 +15,21 @@ class TblMenus extends Migration
     {
         Schema::create('tbl_menus', function (Blueprint $table) {
             $table->id();
-            $table->string('menu');
-            $table->string('clave');
-            $table->integer('ver');
-            $table->integer('agregar');
-            $table->integer('editar');
-            $table->integer('eliminar');
-            $table->integer('impresion');
-            $table->integer('exportar');
-            $table->integer('validar');
-            $table->integer('estatus');
-            $table->integer('parentid');
-            $table->integer('sub_menu');
-            $table->string('descripcion');
-            $table->string('icono');
-            $table->integer('orden');
+            $table->string('menu', 120)->nullable();
+            $table->string('clave', 80)->nullable();
+            $table->integer('ver')->nullable();
+            $table->integer('agregar')->nullable();
+            $table->integer('editar')->nullable();
+            $table->integer('eliminar')->nullable();
+            $table->integer('impresion')->nullable();
+            $table->integer('exportar')->nullable();
+            $table->integer('validar')->nullable();
+            $table->integer('estatus')->nullable();
+            $table->integer('parentid')->nullable();
+            $table->integer('sub_menu')->nullable();
+            $table->string('descripcion', 120)->nullable();
+            $table->string('icono', 30)->nullable();
+            $table->integer('orden')->nullable();
             $table->timestamps();
         });
     }

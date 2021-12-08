@@ -62,12 +62,12 @@ class AdminSolicitudController extends Controller
         // En caso de un rechazo definitivo, eliminar los documentos almacenados en storage
         if ($request->tipo_rechazo == 'Rechazada') {
             // Eliminar documentos
-            $this->definitivo($solicitud_id);
+            $this->eliminarDocs($solicitud_id);
         }
         return redirect()->intended(route('admin.solicitudes'));
     }
 
-    private function definitivo($solicitud_id)
+    private function eliminarDocs($solicitud_id)
     {
         $solicitud_requisitos = SolicitudRequisito::where('solicitud_id', '=', $solicitud_id)->get();
         foreach ($solicitud_requisitos as $solicitud_requisito) {

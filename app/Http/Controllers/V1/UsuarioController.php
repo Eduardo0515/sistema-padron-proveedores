@@ -67,7 +67,7 @@ class UsuarioController extends Controller
             $obj_tabla->area_labora = $request["area_labora"];
             //$obj_tabla->is_movil = $request["is_movil"];
             $obj_tabla->tel_oficina = $request["tel_oficina"];
-            $obj_tabla->extension = $request["extensiones"];
+            $obj_tabla->extension = $request["extension"];
             $obj_tabla->celular = $request["celular"];
             $obj_tabla->created_at =  date('Y-m-d H:i:s');
             $obj_tabla->user_created=Auth::user()->id;
@@ -134,7 +134,7 @@ class UsuarioController extends Controller
             }
             //$obj_tabla->is_movil = $request["is_movil"];
             $obj_tabla->tel_oficina = $request["tel_oficina"];
-            $obj_tabla->extension = $request["extensiones"];
+            $obj_tabla->extension = $request["extension"];
             $obj_tabla->celular = $request["celular"];
             $obj_tabla->updated_at =  date('Y-m-d H:i:s');
             $obj_tabla->user_updated=Auth::user()->id;

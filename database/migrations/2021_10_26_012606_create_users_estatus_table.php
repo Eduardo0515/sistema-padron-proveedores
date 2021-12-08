@@ -15,8 +15,8 @@ class CreateUsersEstatusTable extends Migration
     {
         Schema::create('users_estatus', function (Blueprint $table) {
             $table->id();
-            $table->integer('estatus')->nullable();
-            $table->timestamps();
+            $table->string('estatus', 50)->nullable();
+            $table->char('clave', 3);
         });
     }
 

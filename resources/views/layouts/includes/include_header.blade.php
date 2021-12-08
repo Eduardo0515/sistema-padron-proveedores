@@ -9,12 +9,6 @@
           <li class="nav-item d-none d-sm-inline-block">
               <a href="{{ url('/inicio') }}" class="nav-link">Inicio</a>
           </li>
-          <li class="nav-item d-none d-sm-inline-block">
-              <a href="{{ route('admin.solicitudes') }}" class="nav-link">Solicitudes</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-              <a href="{{ route('admin.padron') }}" class="nav-link">Padrón</a>
-          </li>
       </ul>
 
       <!-- Right navbar links -->

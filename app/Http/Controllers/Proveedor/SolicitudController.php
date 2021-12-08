@@ -188,7 +188,7 @@ class SolicitudController extends Controller
                 $nuevaSolicitud['user_proveedor_id'],
                 $nuevaSolicitud['correo'],
                 $nuevaSolicitud['tipo_persona'],
-                $nuevaSolicitud['razon_social'],
+                $nuevaSolicitud['razon_social']
             );
             $solicitud->update($nuevaSolicitud);
             $solicitud->giros()->sync($request->giros);

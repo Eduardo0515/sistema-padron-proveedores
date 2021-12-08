@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 //Route::post('login', [Auth\LoginController::class, 'userLogin']);
 
 
-Route::get('login', 'Auth\LoginController@showLoginForm');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('admin.showLogin');
 
-Route::post('login-user', 'Auth\LoginController@userLogin');
+Route::post('login-user', 'Auth\LoginController@userLogin')->name('admin.login');
 
 
 //Auth::routes();
@@ -41,6 +41,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('privilegios', V1\PrivilegioController::class)->only([
         'edit', 'update'
     ]);
+
+    // Requisitos
+    Route::get('admin/requisitos', 'Admin\RequisitoController@index')->name('admin.requisitos');
+    Route::get('admin/list-requisitos', 'Admin\RequisitoController@getRequisitos')->name('admin.list-requisitos');
+    Route::post('admin/requisito', 'Admin\RequisitoController@store')->name('admin.requisito.store');
+    Route::put('admin/requisitos/update/{id}', 'Admin\RequisitoController@update')->name('admin.requisito.update');
+    Route::delete('admin/requisitos/delete/{id}', 'Admin\RequisitoController@destroy')->name('admin.requisito.destroy');
+    // Giros
+    Route::get('admin/giros', 'Admin\GiroController@index')->name('admin.giros');
+    Route::get('admin/list-giros', 'Admin\GiroController@getGiros')->name('admin.list-giros');
+    Route::post('admin/giro', 'Admin\GiroController@store')->name('admin.giro.store');
+    Route::put('admin/giros/update/{id}', 'Admin\GiroController@update')->name('admin.giro.update');
+    Route::delete('admin/giros/delete/{id}', 'Admin\GiroController@destroy')->name('admin.giro.destroy');
 
     // Administrar las solicitudes de proveedores
     Route::get('admin/solicitud', 'Admin\AdminSolicitudController@index')->name('admin.solicitudes');
@@ -103,8 +116,8 @@ Route::middleware(['auth:proveedor'])->group(function () {
 });
 
 // Proveedor authentication
-Route::get('/login/proveedor', 'Auth\LoginController@showProveedorLoginForm')->name('proveedor.showLogin');
-Route::post('/login/proveedor', 'Auth\LoginController@proveedorLogin')->name('proveedor.login');
-Route::get('/register/proveedor', 'Auth\RegisterController@showProveedorRegisterForm')->name('proveedor.showRegister');
-Route::post('/register/proveedor', 'Auth\RegisterController@createProveedor')->name('proveedor.register');
+Route::get('/proveedor/login', 'Auth\LoginController@showProveedorLoginForm')->name('proveedor.showLogin');
+Route::post('/proveedor/login', 'Auth\LoginController@proveedorLogin')->name('proveedor.login');
+Route::get('/proveedor/register', 'Auth\RegisterController@showProveedorRegisterForm')->name('proveedor.showRegister');
+Route::post('/proveedor/register', 'Auth\RegisterController@createProveedor')->name('proveedor.register');
 Route::post('/proveedor/logout', 'Auth\LoginController@proveedorLogout')->name('proveedor.logout');

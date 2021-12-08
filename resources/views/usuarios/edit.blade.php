@@ -118,7 +118,7 @@
 
                               <div class="col-md-3">
                                   <div class="form-group has-feedback">
-                                  <label>Numero de extension(es)</label><input class="form-control" type="text" id="extension" name="extension" value="@php echo $info->extension @endphp" placeholder="Extension(es)">
+                                  <label>Numero de extension(es)</label><input class="form-control" type="text" id="extension" name="extensiones" value="@php echo $info->extension @endphp" placeholder="Extension(es)">
                                   <span class="glyphicon glyphicon-phone-alt  form-control-feedback"></span>
                                   </div>
                               </div>

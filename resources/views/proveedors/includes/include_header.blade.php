@@ -1,16 +1,14 @@
   <!-- Navbar -->
-  <nav class="navbar navbar-expand navbar-dark navbar-red">
+  <nav class="main-header navbar navbar-expand navbar-dark navbar-red">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="javascript:;" role="button"><i
+                      class="fas fa-bars"></i></a>
+          </li>
           <li class="nav-item d-none d-sm-inline-block">
               <a href="{{ route('proveedor.home') }}" class="nav-link">Inicio</a>
           </li>
-          <li class="nav-item d-none d-sm-inline-block">
-              <a href="{{ route('proveedor.info') }}" class="nav-link">Mi información</a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('solicitud.index') }}" class="nav-link">Solicitudes</a>
-        </li>
       </ul>
 
       <!-- Right navbar links -->
