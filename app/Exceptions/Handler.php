@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
         if ($request->is('proveedor') || $request->is('proveedor/*')) {
-            return redirect()->guest('/login/proveedor');
+            return redirect()->guest('/proveedor/login');
         }
 
         return redirect()->guest(route('login'));

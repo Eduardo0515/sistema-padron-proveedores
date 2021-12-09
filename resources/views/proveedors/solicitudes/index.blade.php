@@ -15,6 +15,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">Fecha solicitud</th>
+                                <th scope="col">RFC</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
                                 <th scope="col">Estatus</th>
                                 <th scope="col">Acción</th>
                             </tr>
@@ -23,16 +26,19 @@
                             @foreach ($solicitudes as $solicitud)
                                 <tr>
                                     <td>{{ $solicitud->created_at->format('d-m-Y') }}</td>
+                                    <td>{{ $solicitud->rfc }}</td>
+                                    <td>{{ $solicitud->nombres }}</td>
+                                    <td>{{ $solicitud->apellidos }}</td>
                                     <td>{{ $solicitud->estatus }}</td>
                                     <td> <a href="{{ route('solicitud.show', $solicitud->id) }}" class="text-danger">Ver
-                                            solicitud</a></td>
+                                            <i class="fas fa-eye"></i></a></td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     {{ $solicitudes->links() }}
                 @else
-                    <div class="card">
+                    <div class="card mt-4">
                         <div class="card-header">
                             Solicitudes
                         </div>

@@ -19,7 +19,7 @@
     <table class="table table-bordered table-striped datatable">
         <thead>
             <tr>
-                <th></th>
+                <th>#</th>
                 <th>Requisito</th>
                 <th>Requerido</th>
                 <th></th>

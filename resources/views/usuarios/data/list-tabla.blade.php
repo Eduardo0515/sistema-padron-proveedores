@@ -57,7 +57,7 @@
                     <td> {{$datoActual->tel_oficina}}</td>
                     <td> {{$datoActual->extensiones}}</td>
                     <td> {{$datoActual->celular}} </td>
-                    <td> {{$datoActual->created_at}} </td>
+                    <td> {{$datoActual->created_at->format('d-m-Y')}} </td>
                     <td> {{$datoActual->estatus->estatus}} </td>
                     <td style="text-align: center;">
                         <div class="btn-group">

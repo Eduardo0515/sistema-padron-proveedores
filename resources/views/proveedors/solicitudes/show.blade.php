@@ -11,6 +11,15 @@
         <!-- Small boxes (Stat box) -->
         <div class=" mx-4 ">
 
+            @if ($solicitud->estatus == 'Rechazada')
+                <div class="card">
+                    <div class="card-header bg-red">Solicitud rechazada</div>
+                    <div class="card-body">
+                        <p class="card-text">Su solicitud ha sido rechazada, para formar parte del padrón de
+                            proveedores, inicie una nueva solicitud.</p>
+                    </div>
+                </div>
+            @endif
             @if ($solicitud->estatus == 'En captura')
                 <div class="card">
                     <div class="card-body">

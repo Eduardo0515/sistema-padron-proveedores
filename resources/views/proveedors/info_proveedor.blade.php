@@ -44,7 +44,6 @@
                         <label class="form-control " name="razon_social">{{ Auth::user()->razon_social }}</label>
                     </div>
                 </div>
-                <h6 class="form-group mt-2">Representante legal</h6>
             @endif
 
         </div>

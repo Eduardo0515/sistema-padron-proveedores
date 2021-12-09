@@ -26,7 +26,8 @@
                                         class="custom-select @error('rfc') is-invalid @enderror" id="inputGroupSelect01"
                                         name="tipo_persona">
                                         @foreach ($tipo_personas as $tipo_persona)
-                                            <option value="{{ $tipo_persona->id }}">
+                                            <option {{ old('tipo_persona') == $tipo_persona->id ? 'selected' : '' }}
+                                                value="{{ $tipo_persona->id }}">
                                                 {{ $tipo_persona->tipo_persona }}
                                             </option>
                                         @endforeach
@@ -137,6 +138,15 @@
         divRazonSocial.style = "display:none";
 
         $('#select_tipo_persona').on('change', function() {
+            let conceptName = $('#select_tipo_persona').find(":selected").text();
+            if (conceptName.trim() == 'Persona moral' | conceptName.trim() == 'Moral') {
+                divRazonSocial.style = "display:block";
+            } else {
+                divRazonSocial.style = "display:none";
+            }
+        });
+
+        $(document).ready(function() {
             let conceptName = $('#select_tipo_persona').find(":selected").text();
             if (conceptName.trim() == 'Persona moral' | conceptName.trim() == 'Moral') {
                 divRazonSocial.style = "display:block";

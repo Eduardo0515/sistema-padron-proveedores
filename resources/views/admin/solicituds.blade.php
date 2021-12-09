@@ -11,8 +11,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">Fecha solicitud</th>
-                                <th scope="col">Correo usuario</th>
                                 <th scope="col">RFC</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
                                 <th scope="col">Estatus</th>
                                 <th scope="col">Acción</th>
                             </tr>
@@ -21,12 +22,12 @@
                             @foreach ($solicitudes as $solicitud)
                                 <tr>
                                     <td>{{ $solicitud->created_at->format('d-m-Y') }}</td>
-                                    <td>{{ $solicitud->correo }}</td>
                                     <td>{{ $solicitud->rfc }}</td>
+                                    <td>{{ $solicitud->nombres }}</td>
+                                    <td>{{ $solicitud->apellidos }}</td>
                                     <td>{{ $solicitud->estatus }}</td>
                                     <td> <a href="{{ route('admin.versolicitud', $solicitud->id) }}"
-                                            class="text-danger">Ver
-                                            todos los datos</a></td>
+                                            class="text-danger">Ver <i class="fas fa-eye"></i></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

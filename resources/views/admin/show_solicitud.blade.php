@@ -229,9 +229,10 @@
 
                 <div class="form-group row my-5 offset-2">
                     <div class="col-md-5">
-                        <a href="{{ route('admin.aceptar', $solicitud->id) }}" class="btn btn-danger btn-block">
+                        <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                            data-target="#confirmarModal">
                             Aceptar solicitud
-                        </a>
+                        </button>
                     </div>
                     <div class="col-md-5">
                         <button type="button" class="btn btn-outline-dark btn-block" data-toggle="modal"
@@ -240,6 +241,32 @@
                         </button>
                     </div>
                 </div>
+
+                <!--Confirmar solicitud aceptada Modal -->
+                <div class="modal fade" id="confirmarModal" tabindex="-1" role="dialog"
+                    aria-labelledby="confirmarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmarModalLabel">Confirmar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body comentarios-body">
+                                <p>¿Desea aceptar la solicitud?</p>
+                                <p>Esta acción no se puede revertir.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <a href="{{ route('admin.aceptar', $solicitud->id) }}" class="btn btn-danger">
+                                    Sí
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal confirmación-->
 
                 <!--Comentarios Modal -->
                 <div class="modal fade" id="comentariosModal" tabindex="-1" role="dialog"
@@ -269,7 +296,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="rechazar-solicitudLabel">Comentario</h5>
+                                <h5 class="modal-title" id="rechazar-solicitudLabel">Rechazar solicitud</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -308,7 +335,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Escribir comentario</label>
-                                        <textarea name="comentario"
+                                        <textarea placeholder="Escriba un comentario" name="comentario"
                                             class="form-control @error('comentario') is-invalid @enderror"
                                             id="exampleFormControlTextarea1" rows="3">{{ old('comentario') }}</textarea>
                                         @error('comentario')
@@ -336,38 +363,15 @@
 @endsection
 
 @section('content_js')
+    <script src="{{ asset('js/bootbox/bootbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/solicitud/solicitud.js') }}"></script>
+
     @if (count($errors) > 0)
         <script type="text/javascript">
             $('#rechazar-solicitud').modal('show');
         </script>
     @endif
 
-    <script type="text/javascript">
-        // Mostrar los comentarios en el modal
-        function showComentarios(solicitud_id) {
-            $.ajax({
-                url: '{{ route('comentario.read') }}',
-                type: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                data: {
-                    solicitud_id: solicitud_id
-                },
-                success: function(data) {
-                    $('.comentarios-body').html(data)
-                },
-            });
-        }
-        $('#mensaje-rechazar').css("display", "none");
-        // Mostrar advertencia sobre el tipo de rechazo
-        $("#radio-observacion").change(function() {
-            $('#mensaje-rechazar').css("display", "none");
-        });
-        $("#radio-definitivo").change(function() {
-            $('#mensaje-rechazar').css("display", "block");
-        });
-    </script>
     <script type="text/javascript" src="{{ asset('/js/map.js') }}"></script>
     <script type="text/javascript">
         createMap({{ $solicitud->latitud }}, {{ $solicitud->longitud }}, false);

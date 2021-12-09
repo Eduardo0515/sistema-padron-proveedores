@@ -29,8 +29,7 @@
                                             <td>{{ $padron->nombres }} {{ $padron->apellidos }}</td>
                                         @endif
                                         <td> <a href="{{ route('admin.verpadron', $padron->id) }}"
-                                                class="text-danger">Ver
-                                                datos</a></td>
+                                                class="text-danger">Ver <i class="fas fa-eye"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -101,7 +100,7 @@
                             </div>
                             <div class="col-md-7">
                                 <!-- <button onclick="exportToExcel()" class="btn btn-block btn-success">Exportar
-                                                                                datos</button> -->
+                                                                                    datos</button> -->
                                 <button type="submit" class="btn btn-block btn-success">Exportar</button>
                             </div>
                         </div>

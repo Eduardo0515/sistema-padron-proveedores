@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center">
 
-            <div class="col-md-8">
+            <div class="col-md-8 mt-4">
                 
                     <div class="card">
                         <h5 class="card-header">Pago realizado</h5>

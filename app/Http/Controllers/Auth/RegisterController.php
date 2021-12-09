@@ -11,6 +11,7 @@ use App\UserProveedor;
 use App\UserSolicitud;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -94,15 +95,21 @@ class RegisterController extends Controller
             "rfc.required" => "RFC Obligatorio",
             "rfc.unique" => 'Este RFC ya existe',
             "password.required" => "Contraseña Obligatoria",
-            "password.min" => "La contraseña debe tener al menos 6 caracteres"
+            "password.min" => "La contraseña debe tener al menos 6 caracteres",
+            "razon_social.required" => "La razón social es obligatoria",
         ];
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'rfc' => ['required', 'string', 'max:13', 'unique:user_proveedors'],
             'correo' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'tipo_persona' => ['required', 'max:255'],
-            'razon_social' => ['max:255'],
-        ], $messages);
+        ];
+
+        if ($request['tipo_persona'] == 2) {
+            $rules = Arr::add($rules, 'razon_social', ['required', 'max:255']);
+        }
+
+        $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
